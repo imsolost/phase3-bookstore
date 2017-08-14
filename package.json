@@ -1,9 +1,12 @@
 {
   "name": "phase3-bookstore",
   "version": "1.0.0",
-  "description": "",
+  "description": "bookstore",
   "main": "src/index.js",
   "scripts": {
+    "schema": "psql < src/db/schema.sql",
+    "seed": "psql < src/db/seed.sql",
+    "db:reset": "dropdb bookstore && createdb bookstore && npm run schema",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,6 +23,7 @@
     "body-parser": "^1.17.2",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
+    "materialize-css": "^0.100.1",
     "pg-promise": "^6.3.8"
   },
   "devDependencies": {
