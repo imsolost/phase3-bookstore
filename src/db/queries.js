@@ -35,11 +35,11 @@ const search = (input) => {
     FROM
       books
     WHERE
-      lower(title || ' ' || author)
+      lower(title || author || genre)
     LIKE
-      $1
+      lower($1)
     `,
-    [`%${input.toLowerCase().replace(/\s+/,'%')}%`])
+    [`%${input.replace(/\s+/,'%')}%`])
     .catch(error => error)
 }
 

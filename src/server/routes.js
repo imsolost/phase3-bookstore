@@ -29,11 +29,10 @@ router.get('/books/delete/:id', (req, res) => {
     .catch( err => console.log('err', err) )
 })
 
-router.get('/books/search', (req, res) => {
+router.get('/search', (req, res) => {
   const query = req.query.q
-  console.log('inside search', query)
   booksDb.search(query)
-    .then( books => res.render('home', { query, books }) )
+    .then( books => res.render('results', { query, books }) )
     .catch( err => console.log('err', err) )
 })
 
