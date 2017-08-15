@@ -1,1 +1,13 @@
-<h1>hello world</h1>
+
+<h1>home</h1>
+
+<div class="contact-list">
+  <% books.forEach( (book) => { %>
+    <div class="contact-list-member">
+      <a class="contact-link" href="/books/<%= book.id %>">
+        <%= book.title %>&nbsp;<%= book.author %>
+      </a>
+      <a class="delete-contact" href="/books/delete/<%= book.id %>" tabindex="-1">X</a>
+    </div>
+  <% }) %>
+</div>

@@ -4,6 +4,7 @@
   "description": "bookstore",
   "main": "src/index.js",
   "scripts": {
+    "start": "nodemon",
     "schema": "psql < src/db/schema.sql",
     "seed": "psql < src/db/seed.sql",
     "db:reset": "dropdb bookstore && createdb bookstore && npm run schema",
