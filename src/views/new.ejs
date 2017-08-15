@@ -1,0 +1,28 @@
+<%- include nav.ejs %>
+
+<h1>New Book</h1>
+
+<form method="post" action="/books" class="new-contact-form">
+  <pre class="new-contact-form-errors"></pre>
+  <label>
+    <span>Title:</span>
+    <input type="text" name="title" />
+  </label>
+  <label>
+    <span>Author:</span>
+    <input type="text" name="author" />
+  </label>
+  <label>
+    <span>Genre:</span>
+    <input type="text" name="genre" />
+  </label>
+  <label>
+    <span>Pages:</span>
+    <input type="text" name="pages" />
+  </label>
+  <label>
+    <span>Publisher:</span>
+    <input type="text" name="publisher" />
+  </label>
+  <input type="submit" value="Add Book">
+</form>

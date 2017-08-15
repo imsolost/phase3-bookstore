@@ -7,12 +7,18 @@ router.get('/', (req, res) => {
     .catch( err => console.log('err', err) )
 })
 
+router.get('/books/new', (req, res) => res.render('new') )
+
 router.get('/books/:id', (req, res) => {
   const id = req.params.id
   booksDb.getBookById(id)
-    .then( book => {
-      res.render('details', { book })
-    } )
+    .then( book => res.render('details', { book }) )
+    .catch( err => console.log('err', err) )
+})
+
+router.post('/books', (req, res) => {
+  booksDb.createBook(req.body)
+    .then( book => res.redirect(`/books/${book.id}`) )
     .catch( err => console.log('err', err) )
 })
 

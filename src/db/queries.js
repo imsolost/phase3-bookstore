@@ -10,6 +10,19 @@ const getBookById = (id) => {
     .catch(error => error)
 }
 
+const createBook = (book) => {
+  return db.one(`
+    INSERT INTO
+      books (title, author, genre, pages, publisher)
+    VALUES
+      ($1, $2, $3, $4, $5)
+    RETURNING
+      *
+    `,
+    [book.title, book.author, book.genre, book.pages, book.publisher])
+    .catch(error => error)
+}
+
 const deleteBook = (id) => {
   return db.query(`DELETE FROM books WHERE id = $1`, [id])
     .catch(error => error)
@@ -23,6 +36,7 @@ const search = (input) => {
 module.exports = {
   getAllBooks,
   getBookById,
+  createBook,
   deleteBook,
   search
 }
