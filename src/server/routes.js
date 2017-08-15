@@ -11,7 +11,7 @@ router.get('/books/new', (req, res) => res.render('new') )
 
 router.get('/books/:id', (req, res) => {
   const id = req.params.id
-  booksDb.getBookById(id)
+  booksDb.getOneBook(id)
     .then( book => res.render('details', { book }) )
     .catch( err => console.log('err', err) )
 })
@@ -31,9 +31,9 @@ router.get('/books/delete/:id', (req, res) => {
 
 router.get('/books/search', (req, res) => {
   const query = req.query.q
-  console.log(query);
+  console.log('inside search', query)
   booksDb.search(query)
-    .then( (books) => res.render('home', { query, books }) )
+    .then( books => res.render('home', { query, books }) )
     .catch( err => console.log('err', err) )
 })
 
