@@ -25,10 +25,9 @@ router.get('/books/delete/:id', (req, res) => {
 
 router.get('/books/search', (req, res) => {
   const query = req.query.q
+  console.log(query);
   booksDb.search(query)
-    .then( (books) => {
-      if (books) return res.render('index', { query, books })
-    })
+    .then( (books) => res.render('home', { query, books }) )
     .catch( err => console.log('err', err) )
 })
 
