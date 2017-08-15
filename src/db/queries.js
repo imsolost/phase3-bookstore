@@ -1,7 +1,12 @@
 const db = require('./db')
 
-const getBooks = () => {
+const getAllBooks = () => {
   return db.query(`SELECT * FROM books`, [])
+    .catch(error => error)
+}
+
+const getBookById = (id) => {
+  return db.one(`SELECT * FROM books WHERE id = $1`, [id])
     .catch(error => error)
 }
 
@@ -16,7 +21,8 @@ const search = (input) => {
 }
 
 module.exports = {
-  getBooks,
+  getAllBooks,
+  getBookById,
   deleteBook,
   search
 }

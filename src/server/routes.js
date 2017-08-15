@@ -2,17 +2,24 @@ const router = require('express').Router()
 const booksDb = require('../db/queries')
 
 router.get('/', (req, res) => {
-  booksDb.getBooks()
+  booksDb.getAllBooks()
     .then( books => res.render('home', { books }) )
+    .catch( err => console.log('err', err) )
+})
+
+router.get('/books/:id', (req, res) => {
+  const id = req.params.id
+  booksDb.getBookById(id)
+    .then( book => {
+      res.render('details', { book })
+    } )
     .catch( err => console.log('err', err) )
 })
 
 router.get('/books/delete/:id', (req, res) => {
   const id = req.params.id
   booksDb.deleteBook(id)
-    .then( book => {
-      if (book) return res.redirect('/')
-    })
+    .then( book => res.redirect('/') )
     .catch( err => console.log('err', err) )
 })
 
