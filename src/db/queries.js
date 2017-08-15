@@ -29,7 +29,17 @@ const deleteBook = (id) => {
 }
 
 const search = (input) => {
-  return db.query(`SELECT  * FROM books WHERE lower(title || ' ' || author) LIKE $1`, [`%${input.toLowerCase().replace(/\s+/,'%')}%`])
+  return db.query(`
+    SELECT
+      *
+    FROM
+      books
+    WHERE
+      lower(title || ' ' || author)
+    LIKE
+      $1
+    `,
+    [`%${input.toLowerCase().replace(/\s+/,'%')}%`])
     .catch(error => error)
 }
 
